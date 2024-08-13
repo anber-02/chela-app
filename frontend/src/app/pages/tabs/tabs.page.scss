@@ -1,0 +1,17 @@
+ion-tabs {
+
+  ion-tab-bar {
+      width: 100%;
+      // --background: #0d1b2a;
+      // border-radius: 20px 20px 0 0;
+      --border: 0;
+      ion-tab-button {
+          --background: var(--ion-color-white);
+          --color: var(--ion-color-medium);
+          --color-selected: var(--ion-color-secondary);
+          ion-icon {
+              font-size: 1.5rem;
+          }
+      }
+  }
+}

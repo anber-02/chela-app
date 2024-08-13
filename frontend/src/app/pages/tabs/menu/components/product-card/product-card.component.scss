@@ -1,0 +1,38 @@
+ion-card {
+  --background: var(--ion-color-light);
+  --padding-bottom: 10px;
+  height: 14rem;
+  margin: 0.3rem 0;
+  border-radius: 8px;
+  box-shadow: none;
+  border: 1px solid var(--ion-color-light);
+  ion-thumbnail {
+    width: 100%;
+    height: 10rem;
+    margin-bottom: 10px;
+    ion-img {
+      height: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+
+  ion-label {
+    font-size: 0.9rem;
+  }
+
+  ion-label,
+  p {
+    margin: 0 5px;
+  }
+
+  p {
+    font-size: 0.85rem;
+    font-weight: 500;
+    ion-icon.rating {
+      float: right;
+      font-size: 1.8rem;
+      color: var(--ion-color-primary)
+    }
+  }
+}

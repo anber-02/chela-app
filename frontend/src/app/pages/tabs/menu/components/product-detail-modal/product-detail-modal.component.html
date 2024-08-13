@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ product.product_name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-thumbnail>
+      <ion-img [src]="product.image"></ion-img>
+    </ion-thumbnail>
+
+    <ion-label>
+      <ion-text color="dark"><strong>{{product.product_name}}</strong></ion-text>
+      <ion-text color="dark">
+        $<strong>{{product.price}}</strong>
+      </ion-text>
+    </ion-label>
+    <p>{{product.description}}</p>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer [translucent]="true">
+  <ion-toolbar>
+    <ion-button expand="block" color="primary" mode="ios" (click)="addToCart(product)">
+      Add to cart
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

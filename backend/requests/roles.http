@@ -1,0 +1,21 @@
+@url = http://localhost:3000/api
+
+###
+GET {{url}}/roles
+
+###
+GET {{url}}/roles/1
+
+###
+POST {{url}}/roles 
+Content-Type: application/json
+
+{
+  "rol" : "admin"
+}
+
+###
+PATCH {{url}}/roles/1
+
+###
+DELETE {{url}}/roles/1

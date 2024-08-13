@@ -1,0 +1,21 @@
+#INSTALAR LA EXTENSION DE REST CLIENT PARA UTILIZAR LAS PETICIONES
+# REGISTER
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "anberto",
+  "phone_number": "+52 951 289 09 39",
+  "email": "ann2@gmail.com",
+  "password": "12345678"
+}
+
+# LOGIN
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "luuass@gmail.com",
+  "pass": "12345678"
+}

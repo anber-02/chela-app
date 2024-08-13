@@ -1,0 +1,11 @@
+###
+GET http://localhost:3000/api/user
+
+###
+POST http://localhost:3000/api/user/assign-rol
+Content-Type: application/json
+
+{
+  "user_id" : 1,
+  "rol_id": 1
+}

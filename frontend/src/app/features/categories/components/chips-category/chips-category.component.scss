@@ -1,0 +1,9 @@
+.container-chips{
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 5px 0px;
+}
+
+ion-chip{
+  background-color: var(--ion-color-secondary-tint);
+}

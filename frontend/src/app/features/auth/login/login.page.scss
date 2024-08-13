@@ -1,0 +1,46 @@
+/* Estilos específicos para los campos de Correo y Contraseña */
+ion-item {
+  --padding-start: 0;
+  --padding-end: 0;
+  --inner-padding-end: 15px;
+  --inner-padding-start: 15px;
+  --border-color: transparent;
+  --border-radius: 12px;  /* Bordes redondeados */
+  background: #f0f0f0;  /* Fondo suave */
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);  /* Sombra sutil */
+  margin-top: 20px;
+  transition: all 0.3s ease; /* Transición suave al enfocar */
+}
+
+ion-item[focused] {
+  --border-color: #4CAF50;  /* Cambio de color al enfocar */
+  --border-width: 2px;
+  --border-style: solid;
+  background: #ffffff;  /* Fondo más claro al enfocar */
+  box-shadow: 1px 1px 8px rgba(46, 204, 113,0.4);  /* Sombra más destacada al enfocar */
+}
+
+/* Iconos dentro de los campos de Correo y Contraseña */
+.icon-login {
+  margin-right: 8px;
+  color: #666;  /* Color más neutro para los íconos */
+}
+
+/* Estilos para etiquetas flotantes */
+.floating {
+  color: #666;
+  font-size: 16px;
+  transition: color 0.3s ease; /* Transición suave de color */
+}
+
+ion-item[focused] .floating {
+  color: #4CAF50;  /* Color destacado para la etiqueta al enfocar */
+}
+
+.icon-mail {
+  vertical-align: middle;  /* Alineación vertical */
+}
+
+.floating {
+  flex: 1;  /* Ocupa el espacio disponible */
+}

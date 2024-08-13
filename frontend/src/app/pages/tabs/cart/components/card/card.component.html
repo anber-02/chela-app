@@ -1,0 +1,36 @@
+<ion-card class="cart-item">
+  <ion-item lines="none">
+    <ion-thumbnail slot="start">
+      <ion-img [src]="product.image"></ion-img>
+    </ion-thumbnail>
+
+    <ion-label>
+      <strong>{{product.product_name}}</strong>
+      <p class="price">
+        <ion-text color="gray">
+          <span>$</span>{{product.price}} / item
+        </ion-text>
+      </p>
+    </ion-label>
+
+    <ion-col slot="end" size="2">
+      <ion-row>
+        <ion-button color="light" (click)="cartService.addItem(product)">
+          <ion-icon name="add" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="quantity">
+        <ion-text>
+          <strong>{{product.quantity}}</strong>
+        </ion-text>
+      </ion-row>
+
+      <ion-row>
+        <ion-button color="light" (click)="cartService.removeItem(product.id)">
+          <ion-icon name="remove" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-row>
+    </ion-col>
+  </ion-item>
+</ion-card>

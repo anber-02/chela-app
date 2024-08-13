@@ -1,0 +1,16 @@
+<ion-content [fullscreen]="true">
+  <h2>Menu</h2>
+  <ion-searchbar [debounce]="1000" (ionInput)="handleInputSearch($event)" animated="true" placeholder="Search products"
+    show-clear-button="focus"></ion-searchbar>
+
+  <app-chips-category (categoryEvent)="receiveMessage($event)" />
+  <ion-row>
+    @for (product of productsService.products(); track product.id) {
+    <ion-col sizeLg="3" sizeMd="4" sizeSm="6" sizeXl="3" sizeXs="6" (click)="openProductDetail(product)">
+      <app-product-card [product]="product" />
+    </ion-col>
+    }@empty {
+    <h1>sin coincidencias</h1>
+    }
+  </ion-row>
+</ion-content>

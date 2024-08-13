@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar class="header-bar">
+    <ion-title>Productos de Barra</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content">
+  <!-- Contenedor principal -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title align="center">---Menú---</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let producto of productos">
+          <ion-icon [name]="getIconoCategoria(producto.categoria)" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <h2>{{ producto.nombre }}</h2>
+            <p>{{ producto.descripcion }}</p>
+            <p>Precio: {{ producto.precio | currency }}</p>
+            <p>Categoría: {{ producto.categoria }}</p>
+          </ion-label>
+          <ion-button (click)="editarProducto(producto)" fill="outline" color="secondary">Editar</ion-button>
+          <ion-button (click)="borrarProducto(producto.id)" class="ion-color-red-danger">Borrar</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón para agregar nuevo producto -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="nuevoProducto()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Modal para editar o agregar productos -->
+  <ion-modal [isOpen]="mostrarModal" (didDismiss)="cerrarModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="header-bar">
+          <ion-title>{{ productoSeleccionado ? 'Editar Producto' : 'Agregar Nuevo Producto' }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <ion-card>
+          <ion-card-content>
+            <form [formGroup]="productoForm" (ngSubmit)="guardarProducto()">
+              <ion-item>
+
+                <ion-label position="floating">Nombre </ion-label>
+
+                <ion-input formControlName="nombre"></ion-input>
+              </ion-item>
+              <div *ngIf="productoForm.get('nombre')?.invalid && (productoForm.get('nombre')?.dirty || productoForm.get('nombre')?.touched)">
+                <small *ngIf="productoForm.get('nombre')?.errors?.['required']">El nombre es requerido.</small>
+              </div>
+
+              <ion-item>
+                <ion-label position="floating">Descripción</ion-label>
+
+                <ion-input formControlName="descripcion"></ion-input>
+              </ion-item>
+              <div *ngIf="productoForm.get('descripcion')?.invalid && (productoForm.get('descripcion')?.dirty || productoForm.get('descripcion')?.touched)">
+                <small *ngIf="productoForm.get('descripcion')?.errors?.['required']">La descripción es requerida.</small>
+              </div>
+
+              <ion-item>
+                <ion-label position="floating">Precio </ion-label>
+
+                <ion-input type="number" formControlName="precio"></ion-input>
+              </ion-item>
+              <div *ngIf="productoForm.get('precio')?.invalid && (productoForm.get('precio')?.dirty || productoForm.get('precio')?.touched)">
+                <small *ngIf="productoForm.get('precio')?.errors?.['required']">El precio es requerido.</small>
+                <small *ngIf="productoForm.get('precio')?.errors?.['min']">El precio debe ser un valor positivo.</small>
+              </div>
+
+
+              <ion-item class="select-right">
+                <ion-label position="floating">Tamaño</ion-label>
+                <ion-select formControlName="tamaño" [interfaceOptions]="tamanioOptions">
+                  <ion-select-option value="chico">Chico</ion-select-option>
+                  <ion-select-option value="mediano">Mediano</ion-select-option>
+                  <ion-select-option value="grande">Grande</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <div *ngIf="productoForm.get('tamaño')?.invalid && (productoForm.get('tamaño')?.dirty || productoForm.get('tamaño')?.touched)">
+                <small *ngIf="productoForm.get('tamaño')?.errors?.['required']">El tamaño es requerido.</small>
+              </div>
+
+
+               <ion-item class="select-right">
+                <ion-label position="floating">Categoría </ion-label>
+                <ion-select formControlName="categoria" [interfaceOptions]="categoriaOptions">
+                  <ion-select-option value="bebida">Bebida</ion-select-option>
+                  <ion-select-option value="botana">Botana</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <div *ngIf="productoForm.get('categoria')?.invalid && (productoForm.get('categoria')?.dirty || productoForm.get('categoria')?.touched)">
+                <small *ngIf="productoForm.get('categoria')?.errors?.['required']">La categoría es requerida.</small>
+              </div>
+
+              <ion-button type="submit" [disabled]="productoForm.invalid">Guardar</ion-button>
+            </form>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

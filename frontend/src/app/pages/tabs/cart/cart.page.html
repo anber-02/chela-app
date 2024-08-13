@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  @if(cartService.products().length > 0){
+
+  <ion-item lines="none" class="total-item">
+    <ion-label> {{totalItem}} items in Cart </ion-label>
+    <ion-button fill="clear" slot="end" color="danger" size="small" (click)="cartService.clearCart()">
+      <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  @for (product of cartService.products(); track product.id) {
+  <app-card-item [product]="product">
+
+  </app-card-item>
+  }
+
+  <ion-list lines="none" class="billing">
+    <ion-list-header>
+      <ion-label color="tertiary">Details</ion-label>
+    </ion-list-header>
+
+    <ion-item-group>
+      <ion-item>
+        <ion-label color="dark">Item Total</ion-label>
+        <ion-text slot="end" color="dark">
+          ${{totalAmount$ | async}}
+        </ion-text>
+      </ion-item>
+
+
+      <ion-item class="dashedBorderTop">
+        <ion-label color="dark"><strong>To Pay</strong></ion-label>
+        <ion-text slot="end" color="dark">
+          <strong>${{totalAmount$ | async}}</strong>
+        </ion-text>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+  }@else {
+  <div class="empty-screen" [align]="'center'">
+    <ion-icon name="bag-handle-outline" color="primary"></ion-icon>
+    <p>No items available</p>
+  </div>
+  }
+</ion-content>
+@if(cartService.products().length > 0){
+<ion-footer [translucent]="true">
+  <ion-toolbar>
+    <ion-button (click)="createOrder()" expand="block" color="primary" mode="ios">
+      Checkout
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
+}

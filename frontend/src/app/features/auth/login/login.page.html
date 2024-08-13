@@ -1,0 +1,50 @@
+<ion-content [fullscreen]="true">
+  <div class="header-bar"></div>
+  <section class="main-content">
+    <div class="form-container">
+      <div>
+        <div class="logo-container">
+          <img class="logo" alt="logo"
+          src="../../../../assets/images/logo.png"/>
+
+          <h4 class="logo-title">Chel-App</h4>
+        </div>
+        <form [formGroup]="formLogin">
+          <p class="form-title">Bienvenido </p>
+          <ion-item>
+            <ion-icon name="mail-outline" slot="end"></ion-icon>
+            <ion-label position="floating" class="floating">Correo: </ion-label>
+            <ion-input required type="text" formControlName="email"></ion-input>
+          </ion-item>
+          @if(isValidControl("email")) {
+          <p class="error">{{getFieldError("email")}}</p>
+          }
+          <ion-item>
+            <ion-label position="floating">Contraseña:</ion-label>
+            <ion-input required [type]="passInputType" formControlName="password" maxlength="12"></ion-input>
+            <ion-icon
+              [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+              slot="end"
+              class="toggle-password-icon"
+              (click)="toggleShow()">
+            </ion-icon>
+          </ion-item>
+          @if(isValidControl("password")) {
+          <p class="error">{{getFieldError("password")}}</p>
+          }
+          <div class="submit-group">
+            <ion-button color="green-primary" type="submit" expand="block" (click)="iniciar(true)" [disabled]="!formLogin.valid">
+              <span style="color: #ffffff !important;">
+                Iniciar sesión
+              </span>
+            </ion-button>
+            <a href="/" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
+          </div>
+          <div class="register-group">
+            <p class="register-text" [routerLink]="['/register']">¿No tienes  una cuenta?</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</ion-content>

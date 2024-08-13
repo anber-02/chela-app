@@ -1,0 +1,31 @@
+@url = http://localhost:3000/api
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoibHVodWhqIiwiaWF0IjoxNzIxMjM4NzA5LCJleHAiOjE3MjEzMjUxMDl9.41aORqmkyPX-De2mRFZNcGAbd8OgVcvFhRO_kxxNKQ4
+
+###
+GET {{url}}/mesas
+Authorization: Bearer {{token}}
+
+###
+GET {{url}}/mesas/1
+
+###
+POST {{url}}/mesas 
+Content-Type: application/json
+
+{
+  "description": "Mesa VIP",
+  "status": true,
+  "table_number": 1,
+  "capacity": 5
+}
+
+###
+PATCH {{url}}/mesas/1
+Content-Type: application/json
+
+{
+  "status": false
+}
+
+###
+DELETE {{url}}/mesas/1

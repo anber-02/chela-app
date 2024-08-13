@@ -1,0 +1,52 @@
+@url = http://localhost:3000/api
+
+###
+GET {{url}}/category
+
+###
+GET {{url}}/category/1
+
+###
+POST {{url}}/category 
+Content-Type: application/json
+
+{
+  "name": "Cervezas",
+  "description": "Selección de cervezas nacionales e internacionales"
+}
+###
+POST {{url}}/category 
+Content-Type: application/json
+
+{
+  "name": "Cocktails",
+  "description": "Cocktails clásicos y modernos preparados con ingredientes frescos"
+}
+###
+POST {{url}}/category 
+Content-Type: application/json
+
+{
+  "name": "Vinos",
+  "description": "Selección de vinos tintos, blancos y rosados de diferentes regiones"
+}
+###
+POST {{url}}/category 
+Content-Type: application/json
+
+{
+  "name":"Licores",
+  "description": "Licores nacionales e internacionales para disfrutar solo o en cóctel"
+}
+
+###
+PATCH {{url}}/category/1
+Content-Type: application/json
+
+{
+  "name": "Refrescos",
+  "description": "Refrescos y bebidas sin alcohol para todos los gustos"
+}
+
+###
+DELETE {{url}}/category/1

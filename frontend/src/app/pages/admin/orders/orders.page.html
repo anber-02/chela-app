@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">orders</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-row>
+    @for (order of orders; track order.id) {
+    <ion-col size="12" size-md="6">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Order #{{ order.id }}</ion-card-title>
+          <ion-card-subtitle>Total: ${{ order.total }}</ion-card-subtitle>
+          <ion-card-subtitle>Status:
+            <ion-toggle [checked]="order.status === 'completed'" (ionChange)="toggleStatus(order)"></ion-toggle>
+          </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p><strong>Created At:</strong> {{ order.created_at | date: 'medium' }}</p>
+          <p><strong>User:</strong> {{ order.user.name }} ({{ order.user.email }})</p>
+
+          <ion-list>
+            <ion-item *ngFor="let detail of order.order_detail">
+              <ion-thumbnail slot="start">
+                <img [src]="detail.product.image" />
+              </ion-thumbnail>
+              <ion-label>
+                <h2>{{ detail.product.product_name }}</h2>
+                <p>{{ detail.product.description }}</p>
+                <p><strong>Quantity:</strong> {{ detail.quantity }}</p>
+                <p><strong>Unit Price:</strong> ${{ detail.unit_price }}</p>
+                <p><strong>Total:</strong> ${{ detail.total }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    }@empty {
+    <div class="empty-screen" [align]="'center'">
+      <p>No orders available</p>
+    </div>
+    }
+  </ion-row>
+</ion-content>
